@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#E6EDE9; --surface:#F6F8F5; --ink:#15302F; --muted:#5B716E; --line:#C7D5CF;
+  --bg:#E6EDE9; --surface:#F6F8F5; --ink:#15302F; --muted:#5B716E; --ink-2:#2B4643; --line:#C7D5CF;
   --broth:#B9832A; --broth-soft:#EAD9B4;
   --yes:#2F7A57; --no:#B04A3C; --irr:#7C8B88; --key:#B9832A;
   color-scheme:light;
@@ -19,21 +19,21 @@
 }
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
-    --bg:#0D1F22; --surface:#142A2D; --ink:#E4EDE9; --muted:#8EA5A1; --line:#26413F;
+    --bg:#0D1F22; --surface:#142A2D; --ink:#E4EDE9; --muted:#8EA5A1; --ink-2:#C6D6D2; --line:#26413F;
     --broth:#E1AD50; --broth-soft:#3A3322;
     --yes:#62B88C; --no:#E07C6B; --irr:#8C9B98; --key:#E1AD50;
     color-scheme:dark;
   }
 }
 :root[data-theme="dark"]{
-  --bg:#0D1F22; --surface:#142A2D; --ink:#E4EDE9; --muted:#8EA5A1; --line:#26413F;
+  --bg:#0D1F22; --surface:#142A2D; --ink:#E4EDE9; --muted:#8EA5A1; --ink-2:#C6D6D2; --line:#26413F;
   --broth:#E1AD50; --broth-soft:#3A3322;
   --yes:#62B88C; --no:#E07C6B; --irr:#8C9B98; --key:#E1AD50;
   color-scheme:dark;
 }
 *,*::before,*::after{box-sizing:inherit}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans KR",system-ui,-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;font-size:16px;line-height:1.6}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans KR",system-ui,-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;font-size:17px;line-height:1.65;word-break:keep-all;overflow-wrap:anywhere}
 button,input{font:inherit;color:inherit}
 button{cursor:pointer}
 :focus-visible{outline:2px solid var(--broth);outline-offset:2px}
@@ -44,22 +44,22 @@ button{cursor:pointer}
 .masthead{display:flex;align-items:center;gap:18px;margin:8px 0 28px}
 .masthead svg{flex:none}
 .masthead h1{font-family:"Gowun Batang",Georgia,serif;font-size:2.4rem;line-height:1.1;margin:0;letter-spacing:-.01em}
-.masthead p{margin:6px 0 0;color:var(--muted);font-size:.95rem}
-.rules{background:var(--surface);border-left:3px solid var(--broth);padding:14px 18px;margin:0 0 28px;font-size:.95rem;color:var(--muted)}
-.rules b{color:var(--ink);font-weight:500}
-.menu{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
-.menu li{border-bottom:1px solid var(--line)}
-.menu button{all:unset;box-sizing:border-box;display:grid;grid-template-columns:104px minmax(0,1fr) auto;gap:4px 16px;width:100%;padding:16px 4px;cursor:pointer}
+.masthead p{margin:6px 0 0;color:var(--ink-2);font-size:1rem}
+.rules{background:var(--surface);border-left:3px solid var(--broth);padding:16px 20px;margin:0 0 32px;font-size:1rem;color:var(--ink-2)}
+.rules b{color:var(--ink);font-weight:700}
+.menu{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.menu button{all:unset;box-sizing:border-box;display:grid;grid-template-columns:104px minmax(0,1fr) auto;gap:4px 16px;width:100%;padding:14px 12px;border-radius:6px;cursor:pointer;transition:background-color .15s}
+.menu button:hover{background:var(--surface)}
 @media (max-width:520px){.menu button{grid-template-columns:80px minmax(0,1fr) auto;gap:4px 12px}}
-.m-thumb{grid-column:1;grid-row:1/span 2;align-self:center;aspect-ratio:16/9;border-radius:4px;overflow:hidden;border:1px solid var(--line)}
-.m-thumb svg{display:block;width:100%;height:100%}
+.m-thumb{grid-column:1;grid-row:1/span 2;align-self:center;aspect-ratio:16/9;border-radius:4px;overflow:hidden}
+.m-thumb img{display:block;width:100%;height:100%;object-fit:cover}
 .m-title{grid-column:2;grid-row:1}
 .m-level,.m-done{grid-column:3;grid-row:1}
 .menu button:focus-visible{outline:2px solid var(--broth);outline-offset:-2px}
 .menu button:hover .m-title{color:var(--broth)}
 .m-title{font-family:"Gowun Batang",Georgia,serif;font-size:1.25rem;font-weight:700}
 .m-level{color:var(--muted);font-size:.85rem;align-self:center}
-.m-soup{grid-column:2/-1;grid-row:2;color:var(--muted);font-size:.92rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.m-soup{grid-column:2/-1;grid-row:2;color:var(--ink-2);font-size:.97rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .m-done{color:var(--yes);font-size:.85rem}
 
 /* ---------- game ---------- */
@@ -79,23 +79,26 @@ button{cursor:pointer}
 @media (prefers-reduced-motion:reduce){.ripple.go{animation:none}}
 .title{font-family:"Gowun Batang",Georgia,serif;font-size:1.7rem;margin:0 0 6px;line-height:1.25}
 .level{color:var(--muted);font-size:.88rem}
-.soup{font-family:"Gowun Batang",Georgia,serif;font-size:1.2rem;line-height:1.85;margin:0 0 28px;padding:20px 22px;background:var(--surface);border:1px solid var(--line);border-radius:4px}
+.soup{font-family:"Gowun Batang",Georgia,serif;font-size:1.2rem;line-height:1.85;margin:0 0 28px;padding:20px 22px;background:var(--surface);border-radius:4px}
 
 .log{list-style:none;margin:0 0 20px;padding:0}
-.log li{display:grid;grid-template-columns:1fr auto;gap:2px 14px;padding:12px 0;border-bottom:1px dashed var(--line);align-items:baseline}
+.log li{display:grid;grid-template-columns:1fr auto;gap:2px 14px;padding:12px 0;align-items:baseline}
+.log li+li{margin-top:2px}
 .log .q{word-break:keep-all;overflow-wrap:anywhere}
 .log .a{font-weight:700;white-space:nowrap}
-.log .c{grid-column:1/-1;color:var(--muted);font-size:.9rem}
+.log .c{grid-column:1/-1;color:var(--ink-2);font-size:.95rem}
 .a.yes{color:var(--yes)} .a.no{color:var(--no)} .a.irrelevant{color:var(--irr)} .a.key{color:var(--key)} .a.invalid{color:var(--muted);font-weight:500} .a.pending{color:var(--muted);font-weight:400}
-.log li.hint .q{color:var(--muted);font-style:italic}
+.log li.hint{background:var(--surface);padding:12px 14px;border-radius:4px}
+.log li.hint .q{color:var(--ink-2)}
 .empty{color:var(--muted);font-size:.95rem;margin:0 0 20px}
 
 .ask{display:flex;gap:8px;position:sticky;bottom:0;padding:12px 0 calc(12px + env(safe-area-inset-bottom,0px));background:var(--bg)}
-.ask input{flex:1;min-width:0;padding:12px 14px;background:var(--surface);border:1px solid var(--line);border-radius:4px}
+.ask input{flex:1;min-width:0;padding:12px 14px;background:var(--surface);border:0;border-radius:4px}
 .ask input::placeholder{color:var(--muted)}
-.btn{padding:12px 18px;border-radius:4px;border:1px solid var(--ink);background:var(--ink);color:var(--bg);font-weight:500;white-space:nowrap}
+.btn{padding:12px 18px;border-radius:4px;border:0;background:var(--ink);color:var(--bg);font-weight:500;white-space:nowrap}
 .btn:disabled{opacity:.45;cursor:default}
-.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn.ghost{background:var(--surface);color:var(--ink)}
+.btn.ghost:hover:not(:disabled){background:var(--broth-soft)}
 .tools{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
 .notice{color:var(--no);font-size:.92rem;margin:8px 0 0}
 
@@ -103,19 +106,20 @@ button{cursor:pointer}
 .reveal h3{font-family:"Gowun Batang",Georgia,serif;margin:0 0 10px;font-size:1.3rem}
 .reveal p{font-family:"Gowun Batang",Georgia,serif;margin:0;line-height:1.85}
 .reveal .stat{font-family:"Noto Sans KR",sans-serif;color:var(--muted);font-size:.9rem;margin-top:12px}
-.ill{margin:0 0 16px;border-radius:4px;overflow:hidden;border:1px solid var(--line);aspect-ratio:16/9}
-.ill svg{display:block;width:100%;height:100%}
-.hostbar{margin:-12px 0 24px;padding:12px 16px;border:1px dashed var(--broth);border-radius:4px;font-size:.9rem;color:var(--muted)}
-.hostbar b{color:var(--ink);font-weight:500}
-.hostbar .btn{margin-top:10px;padding:8px 12px;font-size:.88rem}
+.ill{margin:0 0 16px;border-radius:4px;overflow:hidden;aspect-ratio:16/9}
+.ill img{display:block;width:100%;height:100%;object-fit:cover}
+.hostbar{margin:-12px 0 24px;padding:14px 18px;background:var(--broth-soft);border-radius:4px;font-size:.95rem;color:var(--ink-2)}
+.hostbar b{color:var(--ink);font-weight:700}
+.hostbar .btn{margin-top:10px;padding:8px 12px;font-size:.92rem;background:var(--bg)}
 .truthbox{margin-top:12px;padding:12px 14px;background:var(--surface);border-left:3px solid var(--broth);font-family:"Gowun Batang",Georgia,serif;color:var(--ink);line-height:1.8}
-.truthbox ul{margin:8px 0 0;padding-left:18px;font-family:"Noto Sans KR",sans-serif;font-size:.85rem;color:var(--muted)}
-.judge{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 16px;padding:12px;border:1px solid var(--line);border-radius:4px;background:var(--surface)}
-.judge span{width:100%;font-size:.85rem;color:var(--muted)}
-.judge button{padding:8px 14px;border-radius:4px;border:1px solid var(--line);background:var(--bg);font-weight:500}
-.judge button.yes{color:var(--yes);border-color:var(--yes)}
-.judge button.no{color:var(--no);border-color:var(--no)}
-.judge button.key{color:var(--key);border-color:var(--key)}
+.truthbox ul{margin:8px 0 0;padding-left:18px;font-family:"Noto Sans KR",sans-serif;font-size:.92rem;color:var(--ink-2)}
+.judge{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 16px;padding:12px;border-radius:4px;background:var(--surface)}
+.judge span{width:100%;font-size:.92rem;color:var(--ink-2)}
+.judge button{padding:8px 14px;border-radius:4px;border:0;background:var(--bg);font-weight:700}
+.judge button:hover{background:var(--broth-soft)}
+.judge button.yes{color:var(--yes)}
+.judge button.no{color:var(--no)}
+.judge button.key{color:var(--key)}
 [hidden]{display:none!important}
 </style>
 </head>
@@ -165,7 +169,7 @@ button{cursor:pointer}
     <div class="ill" id="gIll" aria-hidden="true"></div>
     <p class="soup" id="gSoup"></p>
     <div class="hostbar" id="hostbar" hidden>
-      <b>🎤 출제자 모드</b> · 이 화면에선 AI 판정을 쓸 수 없어서, 한 명이 출제자가 되어 진상을 몰래 보고 질문마다 버튼으로 답해 주세요.
+      <b>출제자 모드</b> · 이 화면에선 AI 판정을 쓸 수 없어서, 한 명이 출제자가 되어 진상을 몰래 보고 질문마다 버튼으로 답해 주세요.
       <div><button class="btn ghost" id="truthBtn" type="button">진상 보기 (출제자만)</button></div>
       <div class="truthbox" id="truthBox" hidden></div>
     </div>
@@ -197,35 +201,29 @@ button{cursor:pointer}
 </div>
 
 <script>
-const ART_CAKE = "<svg viewBox=\"0 0 320 180\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"320\" height=\"180\" fill=\"#2B2238\"/><rect x=\"210\" y=\"22\" width=\"72\" height=\"62\" rx=\"3\" fill=\"#1A2140\" stroke=\"#4A3F5E\" stroke-width=\"4\"/><circle cx=\"228\" cy=\"38\" r=\"9\" fill=\"#F3E3B0\"/><circle cx=\"233\" cy=\"35\" r=\"8\" fill=\"#1A2140\"/><line x1=\"246\" y1=\"22\" x2=\"246\" y2=\"84\" stroke=\"#4A3F5E\" stroke-width=\"3\"/><line x1=\"210\" y1=\"53\" x2=\"282\" y2=\"53\" stroke=\"#4A3F5E\" stroke-width=\"3\"/><circle cx=\"262\" cy=\"34\" r=\"1.2\" fill=\"#fff\" opacity=\".7\"/><circle cx=\"270\" cy=\"70\" r=\"1\" fill=\"#fff\" opacity=\".5\"/><rect x=\"0\" y=\"124\" width=\"320\" height=\"6\" fill=\"#5A4338\"/><rect x=\"0\" y=\"130\" width=\"320\" height=\"50\" fill=\"#3A2C2A\"/><ellipse cx=\"130\" cy=\"127\" rx=\"64\" ry=\"8\" fill=\"#CFC7BA\"/><rect x=\"86\" y=\"88\" width=\"88\" height=\"37\" rx=\"3\" fill=\"#EFE2CD\"/><rect x=\"86\" y=\"88\" width=\"88\" height=\"9\" fill=\"#D98E96\"/><circle cx=\"96\" cy=\"98\" r=\"4\" fill=\"#D98E96\"/><circle cx=\"118\" cy=\"99\" r=\"5\" fill=\"#D98E96\"/><circle cx=\"143\" cy=\"98\" r=\"4\" fill=\"#D98E96\"/><circle cx=\"164\" cy=\"99\" r=\"5\" fill=\"#D98E96\"/><ellipse cx=\"130\" cy=\"88\" rx=\"44\" ry=\"8\" fill=\"#F6EEE2\"/><rect x=\"108\" y=\"68\" width=\"5\" height=\"20\" fill=\"#8FB8DE\"/><rect x=\"124\" y=\"66\" width=\"5\" height=\"22\" fill=\"#F0C05A\"/><rect x=\"140\" y=\"66\" width=\"5\" height=\"22\" fill=\"#8FB8DE\"/><rect x=\"156\" y=\"68\" width=\"5\" height=\"20\" fill=\"#F0C05A\"/><g fill=\"none\" stroke=\"#A39CB3\" stroke-width=\"2\" stroke-linecap=\"round\" opacity=\".75\"><path d=\"M110 66 q-6 -9 1 -17 q7 -8 -1 -18\"/><path d=\"M126 64 q6 -10 -1 -18 q-7 -9 2 -20\"/><path d=\"M142 64 q-5 -8 1 -15 q6 -7 0 -16\"/><path d=\"M158 66 q6 -9 0 -17 q-6 -8 2 -17\"/></g></svg>";
-const ART_EXAM = "<svg viewBox=\"0 0 320 180\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"320\" height=\"180\" fill=\"#E6DFCC\"/><rect x=\"18\" y=\"16\" width=\"170\" height=\"72\" fill=\"#2F4A3E\" stroke=\"#8B6B47\" stroke-width=\"5\"/><text x=\"38\" y=\"48\" fill=\"#E9E6DA\" font-size=\"17\" font-family=\"sans-serif\" font-weight=\"700\">기말고사</text><line x1=\"38\" y1=\"62\" x2=\"150\" y2=\"62\" stroke=\"#E9E6DA\" stroke-width=\"2\" opacity=\".6\"/><line x1=\"38\" y1=\"72\" x2=\"120\" y2=\"72\" stroke=\"#E9E6DA\" stroke-width=\"2\" opacity=\".6\"/><circle cx=\"226\" cy=\"40\" r=\"19\" fill=\"#fff\" stroke=\"#3A3A3A\" stroke-width=\"3\"/><line x1=\"226\" y1=\"40\" x2=\"226\" y2=\"27\" stroke=\"#3A3A3A\" stroke-width=\"2.5\" stroke-linecap=\"round\"/><line x1=\"226\" y1=\"40\" x2=\"235\" y2=\"45\" stroke=\"#3A3A3A\" stroke-width=\"2.5\" stroke-linecap=\"round\"/><rect x=\"0\" y=\"150\" width=\"320\" height=\"30\" fill=\"#B89A74\"/><circle cx=\"286\" cy=\"68\" r=\"10\" fill=\"#E8B98F\"/><path d=\"M276 66 q10 -14 20 0 q-2 -8 -10 -9 q-8 1 -10 9z\" fill=\"#3A2E28\"/><rect x=\"274\" y=\"79\" width=\"24\" height=\"56\" rx=\"6\" fill=\"#4B5D7A\"/><rect x=\"273\" y=\"135\" width=\"9\" height=\"16\" fill=\"#2C2F38\"/><rect x=\"290\" y=\"135\" width=\"9\" height=\"16\" fill=\"#2C2F38\"/><rect x=\"256\" y=\"88\" width=\"18\" height=\"23\" fill=\"#fff\" stroke=\"#BDB6A6\" transform=\"rotate(-8 265 99)\"/><line x1=\"276\" y1=\"90\" x2=\"264\" y2=\"100\" stroke=\"#4B5D7A\" stroke-width=\"6\" stroke-linecap=\"round\"/><g fill=\"#2D2A32\"><circle cx=\"48\" cy=\"108\" r=\"10\"/><circle cx=\"104\" cy=\"108\" r=\"10\"/><circle cx=\"160\" cy=\"108\" r=\"10\"/><circle cx=\"216\" cy=\"108\" r=\"10\"/><rect x=\"36\" y=\"116\" width=\"24\" height=\"16\" rx=\"6\"/><rect x=\"92\" y=\"116\" width=\"24\" height=\"16\" rx=\"6\"/><rect x=\"148\" y=\"116\" width=\"24\" height=\"16\" rx=\"6\"/><rect x=\"204\" y=\"116\" width=\"24\" height=\"16\" rx=\"6\"/></g><line x1=\"170\" y1=\"116\" x2=\"182\" y2=\"74\" stroke=\"#2D2A32\" stroke-width=\"7\" stroke-linecap=\"round\"/><circle cx=\"183\" cy=\"69\" r=\"6\" fill=\"#E8B98F\"/><g fill=\"#C9A36E\"><rect x=\"26\" y=\"126\" width=\"46\" height=\"8\" rx=\"2\"/><rect x=\"82\" y=\"126\" width=\"46\" height=\"8\" rx=\"2\"/><rect x=\"138\" y=\"126\" width=\"46\" height=\"8\" rx=\"2\"/><rect x=\"194\" y=\"126\" width=\"46\" height=\"8\" rx=\"2\"/></g><g fill=\"#8C7350\"><rect x=\"30\" y=\"134\" width=\"4\" height=\"18\"/><rect x=\"64\" y=\"134\" width=\"4\" height=\"18\"/><rect x=\"86\" y=\"134\" width=\"4\" height=\"18\"/><rect x=\"120\" y=\"134\" width=\"4\" height=\"18\"/><rect x=\"142\" y=\"134\" width=\"4\" height=\"18\"/><rect x=\"176\" y=\"134\" width=\"4\" height=\"18\"/><rect x=\"198\" y=\"134\" width=\"4\" height=\"18\"/><rect x=\"232\" y=\"134\" width=\"4\" height=\"18\"/></g><g fill=\"#fff\"><rect x=\"40\" y=\"123\" width=\"14\" height=\"4\"/><rect x=\"96\" y=\"123\" width=\"14\" height=\"4\"/><rect x=\"152\" y=\"123\" width=\"14\" height=\"4\"/><rect x=\"208\" y=\"123\" width=\"14\" height=\"4\"/></g></svg>";
-const ART_RAMEN = "<svg viewBox=\"0 0 320 180\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"320\" height=\"180\" fill=\"#F1E5CE\"/><rect x=\"0\" y=\"112\" width=\"320\" height=\"68\" fill=\"#8A5A3B\"/><rect x=\"0\" y=\"108\" width=\"320\" height=\"6\" fill=\"#A06C48\"/><circle cx=\"258\" cy=\"48\" r=\"26\" fill=\"#fff\" stroke=\"#4A3A30\" stroke-width=\"3\"/><path d=\"M258 48 L258 24 A24 24 0 0 1 258 72 Z\" fill=\"#F4C9A0\"/><line x1=\"258\" y1=\"48\" x2=\"258\" y2=\"70\" stroke=\"#4A3A30\" stroke-width=\"2.5\" stroke-linecap=\"round\"/><line x1=\"258\" y1=\"48\" x2=\"270\" y2=\"40\" stroke=\"#4A3A30\" stroke-width=\"3\" stroke-linecap=\"round\"/><circle cx=\"258\" cy=\"48\" r=\"2.5\" fill=\"#4A3A30\"/><text x=\"236\" y=\"92\" font-size=\"11\" font-family=\"sans-serif\" fill=\"#7A6450\">+30분</text><path d=\"M58 116 Q130 196 202 116 Z\" fill=\"#D8503C\"/><ellipse cx=\"130\" cy=\"116\" rx=\"72\" ry=\"15\" fill=\"#F5EFE6\"/><ellipse cx=\"130\" cy=\"117\" rx=\"64\" ry=\"11\" fill=\"#D99A3E\"/><g fill=\"none\" stroke=\"#F2D48A\" stroke-width=\"3\" stroke-linecap=\"round\"><path d=\"M80 117 q8 -6 16 0 t16 0 t16 0 t16 0\"/><path d=\"M92 121 q8 -5 16 0 t16 0 t16 0 t16 0 t14 0\"/><path d=\"M100 112 q8 -5 16 0 t16 0 t16 0\"/></g><ellipse cx=\"162\" cy=\"112\" rx=\"11\" ry=\"6\" fill=\"#fff\"/><ellipse cx=\"163\" cy=\"112\" rx=\"5\" ry=\"3.5\" fill=\"#F0A93A\"/><g fill=\"#6FAE5A\"><circle cx=\"110\" cy=\"110\" r=\"2.2\"/><circle cx=\"118\" cy=\"113\" r=\"2\"/><circle cx=\"140\" cy=\"109\" r=\"2.2\"/><circle cx=\"146\" cy=\"120\" r=\"2\"/></g><line x1=\"66\" y1=\"96\" x2=\"212\" y2=\"108\" stroke=\"#6B4A2E\" stroke-width=\"4\" stroke-linecap=\"round\"/><line x1=\"68\" y1=\"102\" x2=\"214\" y2=\"112\" stroke=\"#7D5838\" stroke-width=\"4\" stroke-linecap=\"round\"/><path d=\"M122 92 q-5 -8 1 -14\" fill=\"none\" stroke=\"#C9BBA6\" stroke-width=\"2\" opacity=\".5\" stroke-linecap=\"round\"/></svg>";
-const ART_PHOTO = "<svg viewBox=\"0 0 320 180\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"320\" height=\"180\" fill=\"#D6CEC2\"/><rect x=\"40\" y=\"28\" width=\"240\" height=\"126\" rx=\"16\" fill=\"#1E1E22\"/><rect x=\"52\" y=\"38\" width=\"216\" height=\"106\" rx=\"5\" fill=\"#BFDCEB\"/><circle cx=\"226\" cy=\"58\" r=\"9\" fill=\"#FFF3C8\"/><polygon points=\"52,100 92,62 122,88 152,56 196,96 230,72 268,98 268,104 52,104\" fill=\"#7E9A84\"/><polygon points=\"52,104 80,82 104,100 52,104\" fill=\"#6B8872\"/><rect x=\"52\" y=\"98\" width=\"216\" height=\"6\" fill=\"#55745A\"/><g fill=\"#3E5A44\"><polygon points=\"64,98 68,88 72,98\"/><polygon points=\"74,98 78,90 82,98\"/><polygon points=\"190,98 194,89 198,98\"/><polygon points=\"200,98 204,91 208,98\"/><polygon points=\"246,98 250,90 254,98\"/></g><rect x=\"52\" y=\"104\" width=\"216\" height=\"40\" fill=\"#7FB0CB\"/><polygon points=\"52,104 92,128 122,110 152,132 196,106 230,122 268,104\" fill=\"#6E9AB4\" opacity=\".7\"/><g stroke=\"#fff\" stroke-width=\"2\" opacity=\".45\" stroke-linecap=\"round\"><line x1=\"80\" y1=\"134\" x2=\"110\" y2=\"134\"/><line x1=\"150\" y1=\"138\" x2=\"190\" y2=\"138\"/><line x1=\"214\" y1=\"120\" x2=\"232\" y2=\"120\"/></g><circle cx=\"274\" cy=\"91\" r=\"4\" fill=\"#3A3A40\"/><rect x=\"58\" y=\"42\" width=\"34\" height=\"4\" rx=\"2\" fill=\"#fff\" opacity=\".6\"/></svg>";
-const ART_PAINTING = "<svg viewBox=\"0 0 320 180\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"320\" height=\"180\" fill=\"#262A36\"/><rect x=\"0\" y=\"142\" width=\"320\" height=\"38\" fill=\"#1B1E27\"/><rect x=\"0\" y=\"140\" width=\"320\" height=\"3\" fill=\"#3A3F4E\"/><rect x=\"24\" y=\"40\" width=\"68\" height=\"54\" fill=\"#3B3529\" stroke=\"#6E5E3E\" stroke-width=\"5\"/><circle cx=\"48\" cy=\"62\" r=\"12\" fill=\"#5C4A6E\"/><polygon points=\"62,84 82,84 72,60\" fill=\"#3E5A6E\"/><rect x=\"124\" y=\"30\" width=\"78\" height=\"78\" fill=\"#2E3440\" stroke=\"#7C6A42\" stroke-width=\"5\"/><rect x=\"134\" y=\"44\" width=\"30\" height=\"40\" fill=\"#8E3B36\"/><rect x=\"160\" y=\"62\" width=\"32\" height=\"18\" fill=\"#C9A440\"/><circle cx=\"178\" cy=\"92\" r=\"9\" fill=\"#3F6C8A\"/><line x1=\"134\" y1=\"96\" x2=\"192\" y2=\"40\" stroke=\"#E2DED2\" stroke-width=\"2\"/><path d=\"M134 38 q4 -4 8 0 t8 0 t6 -2\" fill=\"none\" stroke=\"#E2DED2\" stroke-width=\"1.6\"/><rect x=\"234\" y=\"44\" width=\"62\" height=\"48\" fill=\"#3B3529\" stroke=\"#6E5E3E\" stroke-width=\"5\"/><rect x=\"244\" y=\"56\" width=\"18\" height=\"26\" fill=\"#4E6E5A\"/><rect x=\"268\" y=\"52\" width=\"20\" height=\"14\" fill=\"#6E4E5A\"/><g fill=\"#4A4F5E\"><rect x=\"44\" y=\"120\" width=\"5\" height=\"22\"/><rect x=\"270\" y=\"120\" width=\"5\" height=\"22\"/></g><path d=\"M46 120 Q160 136 272 120\" fill=\"none\" stroke=\"#8C3A3A\" stroke-width=\"3\"/><polygon points=\"320,180 286,180 150,40 210,26\" fill=\"#F6E7A8\" opacity=\".22\"/><ellipse cx=\"166\" cy=\"70\" rx=\"56\" ry=\"50\" fill=\"#F6E7A8\" opacity=\".12\"/><rect x=\"300\" y=\"150\" width=\"14\" height=\"24\" rx=\"3\" fill=\"#3A3F4E\"/></svg>";
-const ART_LIGHTHOUSE = "<svg viewBox=\"0 0 320 180\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"320\" height=\"180\" fill=\"#0E1A2E\"/><g fill=\"#fff\"><circle cx=\"30\" cy=\"20\" r=\"1.2\" opacity=\".8\"/><circle cx=\"120\" cy=\"14\" r=\"1\" opacity=\".6\"/><circle cx=\"160\" cy=\"40\" r=\"1.3\" opacity=\".7\"/><circle cx=\"200\" cy=\"18\" r=\"1\" opacity=\".5\"/><circle cx=\"300\" cy=\"22\" r=\"1.2\" opacity=\".7\"/><circle cx=\"96\" cy=\"44\" r=\"1\" opacity=\".5\"/><circle cx=\"228\" cy=\"62\" r=\"1\" opacity=\".6\"/><circle cx=\"12\" cy=\"60\" r=\"1\" opacity=\".5\"/></g><circle cx=\"256\" cy=\"40\" r=\"14\" fill=\"#F2EBD0\"/><rect x=\"0\" y=\"108\" width=\"320\" height=\"44\" fill=\"#14304A\"/><g fill=\"#F2EBD0\" opacity=\".55\"><ellipse cx=\"256\" cy=\"114\" rx=\"16\" ry=\"1.6\"/><ellipse cx=\"252\" cy=\"122\" rx=\"12\" ry=\"1.5\"/><ellipse cx=\"260\" cy=\"130\" rx=\"9\" ry=\"1.4\"/><ellipse cx=\"254\" cy=\"138\" rx=\"6\" ry=\"1.2\"/></g><g stroke=\"#2C5577\" stroke-width=\"1.5\" opacity=\".7\"><line x1=\"20\" y1=\"120\" x2=\"60\" y2=\"120\"/><line x1=\"120\" y1=\"132\" x2=\"170\" y2=\"132\"/><line x1=\"190\" y1=\"116\" x2=\"220\" y2=\"116\"/></g><path d=\"M0 150 Q100 140 180 152 T320 148 V180 H0Z\" fill=\"#B9A47E\"/><path d=\"M0 160 Q120 150 220 162 T320 160 V180 H0Z\" fill=\"#A8946F\"/><polygon points=\"0,150 0,104 30,96 74,100 110,118 120,150\" fill=\"#22303A\"/><polygon points=\"58,100 84,100 80,40 62,40\" fill=\"#E9E4D8\"/><polygon points=\"61,84 81,84 80.5,74 61.5,74\" fill=\"#B8473A\"/><polygon points=\"62.5,62 79.5,62 79,52 63,52\" fill=\"#B8473A\"/><rect x=\"60\" y=\"28\" width=\"22\" height=\"13\" fill=\"#24323F\" stroke=\"#5A6470\" stroke-width=\"2\"/><polygon points=\"57,29 85,29 71,18\" fill=\"#5A2E2A\"/><rect x=\"56\" y=\"40\" width=\"30\" height=\"3\" fill=\"#5A6470\"/><g fill=\"#3E3A3A\"><rect x=\"236\" y=\"88\" width=\"18\" height=\"14\"/><rect x=\"262\" y=\"84\" width=\"22\" height=\"18\"/><rect x=\"290\" y=\"90\" width=\"16\" height=\"12\"/></g><g fill=\"#3E3A3A\"><polygon points=\"234,88 245,80 256,88\"/><polygon points=\"260,84 273,74 286,84\"/><polygon points=\"288,90 298,82 308,90\"/></g><g fill=\"#F0C05A\"><rect x=\"242\" y=\"93\" width=\"5\" height=\"5\"/><rect x=\"270\" y=\"90\" width=\"5\" height=\"5\"/><rect x=\"295\" y=\"94\" width=\"4\" height=\"4\"/></g><rect x=\"226\" y=\"102\" width=\"94\" height=\"6\" fill=\"#22303A\"/></svg>";
 const PUZZLES = [
   {
-    id:"cake", art:ART_CAKE, title:"생일 케이크", level:"쉬움",
+    id:"cake", img:"img/cake.webp", title:"생일 케이크", level:"쉬움",
     soup:"여자는 생일 케이크의 촛불을 끄고 나서 한참을 펑펑 울었다. 그리고 그날 밤, 몇 년 만에 처음으로 푹 잠들었다.",
   },
   {
-    id:"exam", art:ART_EXAM, title:"손을 든 학생", level:"쉬움",
+    id:"exam", img:"img/exam.webp", title:"손을 든 학생", level:"쉬움",
     soup:"기말고사 도중 한 학생이 손을 들자, 선생님은 시험지를 한 장 넘겨보더니 곧바로 시험을 중단시켰다. 학생은 문제에 대해 아무것도 묻지 않았다.",
   },
   {
-    id:"ramen", art:ART_RAMEN, title:"식어가는 라면", level:"보통",
+    id:"ramen", img:"img/ramen.webp", title:"식어가는 라면", level:"보통",
     soup:"남자는 라면을 끓여 놓고 30분 동안 한 젓가락도 먹지 않은 채 바라보기만 했다. 그리고 젓가락으로 면을 한 가닥 집어 들더니 만족스럽게 웃었다.",
   },
   {
-    id:"photo", art:ART_PHOTO, title:"호숫가 사진", level:"보통",
+    id:"photo", img:"img/photo.webp", title:"호숫가 사진", level:"보통",
     soup:"여행에서 돌아온 여자는 휴대폰 사진을 넘기다 한 장에서 손을 멈추고, 곧바로 경찰에 전화했다. 그 사진에는 잔잔한 호수 풍경만 담겨 있었다.",
   },
   {
-    id:"painting", art:ART_PAINTING, title:"거꾸로 걸린 그림", level:"어려움",
+    id:"painting", img:"img/painting.webp", title:"거꾸로 걸린 그림", level:"어려움",
     soup:"미술관 야간 경비원은 한 그림이 거꾸로 걸려 있다는 걸 알아챘지만, 아무에게도 말하지 않고 그대로 두었다. 일주일 뒤, 그는 미술관으로부터 표창을 받았다.",
   },
   {
-    id:"lighthouse", art:ART_LIGHTHOUSE, title:"꺼진 등대", level:"어려움",
+    id:"lighthouse", img:"img/lighthouse.webp", title:"꺼진 등대", level:"어려움",
     soup:"평생 하룻밤도 거르지 않던 등대지기가 어느 여름밤, 처음으로 등대 불을 켜지 않았다. 다음 날 아침 마을 사람들은 그에게 고맙다며 인사를 건넸다.",
   }
 ];
@@ -341,7 +339,7 @@ function renderMenu(){
   PUZZLES.forEach(p=>{
     const li = document.createElement("li");
     const b = document.createElement("button");
-    b.innerHTML = `<span class="m-title"></span><span class="${solvedSet.has(p.id)?'m-done':'m-level'}"></span><span class="m-soup"></span><span class="m-thumb" aria-hidden="true">${p.art}</span>`;
+    b.innerHTML = `<span class="m-title"></span><span class="${solvedSet.has(p.id)?'m-done':'m-level'}"></span><span class="m-soup"></span><span class="m-thumb" aria-hidden="true"><img src="${p.img}" alt="" loading="lazy" decoding="async" width="1280" height="720"></span>`;
     b.querySelector(".m-title").textContent = p.title;
     b.children[1].textContent = solvedSet.has(p.id) ? "해결함" : p.level;
     b.querySelector(".m-soup").textContent = p.soup;
@@ -357,7 +355,7 @@ function start(p){
   $("gLevel").textContent = p.level;
   $("gStatus").textContent = solvedSet.has(p.id) ? "이전에 해결한 문제" : "진행 중";
   $("gSoup").textContent = p.soup;
-  $("gIll").innerHTML = p.art;
+  $("gIll").innerHTML = `<img src="${p.img}" alt="" decoding="async" width="1280" height="720">`;
   $("hostbar").hidden = !hostMode; $("truthBox").hidden = true; $("truthBtn").textContent = "진상 보기 (출제자만)";
   $("truthBox").innerHTML = ""; delete $("truthBox").dataset.id;
   $("judge").hidden = true; $("hintBtn").hidden = hostMode;

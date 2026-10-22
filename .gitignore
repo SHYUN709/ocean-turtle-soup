@@ -5,3 +5,5 @@
 .firebase/
 .claude/
 .taste-skill/
+img/*.png
+img/*.jpg
