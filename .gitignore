@@ -1,0 +1,7 @@
+# 비밀 값·서비스 계정·로컬 도구 파일은 올리지 않음
+*service-account*.json
+*-firebase-adminsdk-*.json
+.env*
+.firebase/
+.claude/
+.taste-skill/
